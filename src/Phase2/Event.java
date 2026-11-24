@@ -1,0 +1,42 @@
+package Phase2;
+
+public class Event implements IEvent {
+
+    protected int id;
+    protected ITimeSlot timeSlot;
+    protected ILocation location;
+    protected Set<Integer> participantIds;
+
+    public Event(int id,ITimeSlot timeSlot,ILocation location,Set<Integer> participantIds) {
+
+        this.id = id;
+        this.timeSlot = timeSlot;
+        this.location = location;
+        this.participantIds = participantIds;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public ITimeSlot getTimeSlot() {
+        return timeSlot;
+    }
+
+    @Override
+    public ILocation getLocation() {
+        return location;
+    }
+
+    @Override
+    public Set<Integer> getParticipantIds() {
+        return participantIds;
+    }
+
+    @Override
+    public int compareTo(IEvent other) {
+        return Integer.compare(this.id, other.getId());
+    }
+}
