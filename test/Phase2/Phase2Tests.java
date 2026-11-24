@@ -218,6 +218,13 @@ public class Phase2Tests {
             assertEquals(6, s.size(), "size");
         });
 
+        t.test("back-to-back meetings do not conflict", () -> {
+            AdvisingSystemPhase2 sys = world(10, 1);
+            sys.scheduleMeeting(slot(1, 9, 10), 100, 200);
+            sys.scheduleMeeting(slot(1, 10, 11), 100, 200);
+            assertEquals(2, sys.getMeetings().size(), "both meetings booked");
+        });
+
         return t.runAll("Phase 2");
     }
 }

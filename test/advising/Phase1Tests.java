@@ -241,6 +241,13 @@ public class Phase1Tests {
             sys.printStudentsByPartialName(null);
         });
 
+        t.test("back-to-back meetings do not conflict", () -> {
+            AdvisingSystemPhase1 sys = new AdvisingSystemPhase1();
+            sys.addStudent(student(1, "Ali Saleh"));
+            assertTrue(sys.scheduleMeeting("A", dt(2026, 5, 1, 9, 0), dt(2026, 5, 1, 10, 0), "Office", 1), "first");
+            assertTrue(sys.scheduleMeeting("B", dt(2026, 5, 1, 10, 0), dt(2026, 5, 1, 11, 0), "Office", 1), "second");
+        });
+
         return t.runAll("Phase 1");
     }
 }
